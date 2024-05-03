@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: quickstart-se
+  labels:
+    app: quickstart-se
+spec:
+  type: ClusterIP
+  selector:
+    app: quickstart-se
+  ports:
+    - name: tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: quickstart-se
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quickstart-se
+  template:
+    metadata:
+      labels:
+        app: quickstart-se
+        version: v1
+    spec:
+      containers:
+      - name: quickstart-se
+        image: quickstart-se
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

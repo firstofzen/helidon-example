@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  host: 0.0.0.0
+
+app:
+  kafka:
+    bootstrap-servers: 172.18.0.2:32742
+  greeting: "Hello"
+
